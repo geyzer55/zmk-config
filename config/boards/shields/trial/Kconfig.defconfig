@@ -1,7 +1,7 @@
-if SHIELD_LILY58
+if SHIELD_TRIAL
 
 config ZMK_KEYBOARD_NAME
-    default "lily58"
+    default "trial"
     
 config ZMK_DISPLAY
     default y

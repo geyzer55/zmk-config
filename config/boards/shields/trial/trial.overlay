@@ -35,9 +35,9 @@
         segment-offset = <0>;
         page-offset = <0>;
         display-offset = <0>;
-        multiplex-ratio = <31>; // 32行-1=31
-        //segment-remap; // 列地址重映射（水平翻转）
-        //com-invdir; // COM引脚反向扫描（垂直翻转）
+        multiplex-ratio = <31>;
+        //segment-remap;
+        //com-invdir;
         com-sequential; //
         //inversion-on;  // Inverse the Color
         prechargep = <0x22>;
