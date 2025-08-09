@@ -7,6 +7,8 @@ config ZMK_DISPLAY
     default y
 
 config ZMK_DISPLAY_SSD1306
+    bool "Enable SSD1306 Display"
     default y
+    select LVGL
 
 endif
