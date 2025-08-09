@@ -46,6 +46,14 @@
 
 /{
     chosen {
+    zmk,kscan = &default_kscan;        
     zephyr,display = &oled_128x32;
+    };
+
+    default_kscan: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        label = "default_kscan";
+        input-gpios =
+            <&gpio0 24 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
     };
 };
