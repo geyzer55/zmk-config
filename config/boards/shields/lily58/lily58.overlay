@@ -1,27 +1,49 @@
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
-            psel-sda = <NRF_PSEL(SDA, 0, 17)>;
-            psel-scl = <NRF_PSEL(SCL, 0, 20)>;
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            bias-pull-up;
+            //nordic,drive-mode = <NRF_DRIVE_H0H1>;
+        };
+    };
+
+    i2c0_sleep: i2c0_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            low-power-enable;
         };
     };
 };
 
+#include "<board>-pinctrl.dtsi"
+
 &i2c0 {
+    compatible = "nordic,nrf-twim"; // I2C controller instead of generic
     status = "okay";
     pinctrl-0 = <&i2c0_default>;
-    pinctrl-names = "default";
-    clock-frequency = <I2C_BITRATE_STANDARD>;
+    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-names = "default", "sleep";
+    clock-frequency = <I2C_BITRATE_FAST>;
 
-    oled: ssd1306@3c {
+    oled_128x32: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
-        height = <32>;
         width = <128>;
-        rotation = <0>;
+        height = <32>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>; // 32行-1=31
+        //segment-remap; // 列地址重映射（水平翻转）
+        //com-invdir; // COM引脚反向扫描（垂直翻转）
+        com-sequential; //
+        //inversion-on;  // Inverse the Color
+        prechargep = <0x22>;
     };
 };
 
 &chosen {
-    zephyr,display = &oled;
+    zephyr,display = &oled_128x32;
 };

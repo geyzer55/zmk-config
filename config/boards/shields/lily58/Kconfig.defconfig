@@ -1,5 +1,12 @@
+if SHIELD_LILY58
+
+config ZMK_KEYBOARD_NAME
+    default "lily58"
+    
 config ZMK_DISPLAY
     default y
 
 config ZMK_DISPLAY_SSD1306
     default y
+
+endif
