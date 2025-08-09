@@ -1,0 +1,27 @@
+&pinctrl {
+    i2c0_default: i2c0_default {
+        group1 {
+            psel-sda = <NRF_PSEL(SDA, 0, 17)>;
+            psel-scl = <NRF_PSEL(SCL, 0, 20)>;
+        };
+    };
+};
+
+&i2c0 {
+    status = "okay";
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-names = "default";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        height = <32>;
+        width = <128>;
+        rotation = <0>;
+    };
+};
+
+&chosen {
+    zephyr,display = &oled;
+};
