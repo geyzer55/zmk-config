@@ -17,7 +17,7 @@
     };
 };
 
-#include "<board>-pinctrl.dtsi"
+#include "nice_nano-pinctrl.dtsi"
 
 &i2c0 {
     compatible = "nordic,nrf-twim"; // I2C controller instead of generic
