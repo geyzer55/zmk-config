@@ -17,8 +17,6 @@
     };
 };
 
-//#include "nice_nano-pinctrl.dtsi"
-
 &i2c0 {
     compatible = "nordic,nrf-twim"; // I2C controller instead of generic
     status = "okay";
@@ -36,10 +34,10 @@
         page-offset = <0>;
         display-offset = <0>;
         multiplex-ratio = <31>;
-        //segment-remap;
-        //com-invdir;
-        com-sequential; //
-        //inversion-on;  // Inverse the Color
+        segment-remap;
+        com-invdir;
+        com-sequential;
+        inversion-on;
         prechargep = <0x22>;
     };
 };
